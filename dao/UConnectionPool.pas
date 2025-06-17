@@ -140,6 +140,7 @@ begin
     Conn.Params.Password := FPassword;
     Conn.Params.Add('Server='+FServer);
     Conn.Params.Add('Port='+FPort);
+    Conn.Params.Values['AutoReconnect'] := 'True';
     Conn.Connected := True;
     Result := Conn;
   except
