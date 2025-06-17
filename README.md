@@ -10,48 +10,44 @@ Este projeto é uma **API mínima** desenvolvida em **Delphi** utilizando o fram
 
 Crie a pasta onde o aplicativo e seus arquivos de configuração ficarão:
 
-```bash
-sudo mkdir -p /opt/<nome-do-serviço>
+```sudo mkdir -p /opt/<nome-do-serviço>```
+
 Substitua <nome-do-serviço> pelo identificador desejado (ex: apiminima).
 
 ### 2. Copiar arquivos do aplicativo
 Coloque o executável e o arquivo .ini de configuração no diretório criado:
 
-sudo cp <aplicativo> <aplicativo>.ini /opt/<nome-do-serviço>/
+```sudo cp <aplicativo> <aplicativo>.ini /opt/<nome-do-serviço>/```
 
 ### 3. Ajustar permissões
 Configure permissões apropriadas:
 
-bash
-sudo chmod -R 755 /opt/<nome-do-serviço>/
+```sudo chmod -R 755 /opt/<nome-do-serviço>/```
 
 ⚠️ Atenção: O uso de chmod 777 é desaconselhado por questões de segurança.
 
 ### 4. Instalar o arquivo de serviço
 Coloque o arquivo de definição do serviço em /etc/systemd/system/:
 
-bash
-sudo cp <NomeDaAplicacao>.service /etc/systemd/system/
+```sudo cp <NomeDaAplicacao>.service /etc/systemd/system/```
 
 ### 5. Ativar e iniciar o serviço
 
-
-sudo systemctl enable <NomeDaAplicacao>.service
-sudo systemctl start <NomeDaAplicacao>.service
+```sudo systemctl enable <NomeDaAplicacao>.service```
+```sudo systemctl start <NomeDaAplicacao>.service```
 
 Verifique o status com:
-sudo systemctl status <NomeDaAplicacao>.service
+```sudo systemctl status <NomeDaAplicacao>.service```
 
 🧩 Dependência: Biblioteca MySQL
 Para que o binário funcione corretamente, é necessário instalar a biblioteca de cliente MySQL:
 
-
-sudo apt-get update
-sudo apt-get install libmysqlclient20
+```sudo apt-get update```
+```sudo apt-get install libmysqlclient20```
 
 Crie um link simbólico, se necessário:
 
-sudo ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so.20 /usr/lib/x86_64-linux-gnu/libmysqlclient.so
+```sudo ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so.20 /usr/lib/x86_64-linux-gnu/libmysqlclient.so```
 
 📋 Pré-requisitos
 Delphi com suporte a compilação para Linux (Delphi Rio 10.3 ou superior)
@@ -64,18 +60,17 @@ Bibliotecas MySQL no sistema
 
 📁 Estrutura sugerida do projeto
 
-├── src/
+<pre>├── src/
 │   └── main.dpr
 ├── config/
 │   └── app.ini
 ├── systemd/
 │   └── ApiMinimaDelphiHorse.service
-├── README.md
+├── README.md</pre>
 
 📦 Exemplo de arquivo .service
 
-ini
-[Unit]
+<pre>[Unit]
 Description=API Delphi Horse
 After=network.target
 
@@ -87,7 +82,7 @@ RestartSec=5
 User=root
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target</pre>
 
 🤝 Contribuição
 Sinta-se à vontade para contribuir com sugestões, melhorias ou correções. Basta abrir uma issue ou enviar um pull request.
